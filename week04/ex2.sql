@@ -14,7 +14,7 @@ SELECT Course.name AS CourseName, Student.name AS StudentName FROM Course
   JOIN Student ON Enroll.PersonID = Student.id
   WHERE Course.credits < 3;
 
-SELECT Course.name
+SELECT DISTINCT Course.name
 FROM Course
   INNER JOIN Enroll ON Course.name = Enroll.CourseName
   INNER JOIN Student ON Enroll.PersonID = Student.id

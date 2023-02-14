@@ -52,4 +52,4 @@ INSERT INTO Takes VALUE ("Robotics", 4);
 
 INSERT INTO Enroll VALUES ("C++", 1);
 INSERT INTO Enroll VALUES ("C++", 4);
-
+INSERT INTO Enroll VALUES ("C++", 2);
