@@ -48,5 +48,8 @@ INSERT INTO Course VALUE ("C++", 1);
 INSERT INTO Takes VALUE ("SD", 1);
 INSERT INTO Takes VALUE ("Robotics", 2);
 INSERT INTO Takes VALUE ("Cyber", 3);
-INSERT INTO Takes VALUE ("Robotics", 4)
+INSERT INTO Takes VALUE ("Robotics", 4);
+
+INSERT INTO Enroll VALUES ("C++", 1);
+INSERT INTO Enroll VALUES ("C++", 4);
 
