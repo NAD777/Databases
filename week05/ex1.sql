@@ -3,11 +3,11 @@ SELECT MAX(enrollment) AS max_enrollment, MIN(enrollment) AS min_enrollment
 FROM (
   SELECT COUNT(*) AS enrollment
   FROM takes
-  GROUP BY course_id, sec_id, semester, year
+  GROUP BY course_id, sec_id
 ) AS enrollment_counts;
 
 -- 2
-SELECT course_id, sec_id, semester, year, enrollment
+SELECT sec_id
 FROM (
   SELECT course_id, sec_id, semester, year, COUNT(*) AS enrollment
   FROM takes
@@ -44,16 +44,12 @@ SELECT name FROM instructor
 WHERE dept_name = 'Biology';
 
 -- 6
-SELECT section.course_id, COUNT(takes.ID) FROM section LEFT JOIN takes ON section.course_id = takes.course_id
-  AND section.sec_id = takes.sec_id AND section.semester = takes.semester
-  AND section.year = takes.year
-WHERE section.semester = 'Fall' AND section.year = 2022
-GROUP BY section.course_id, section.sec_id;
+select count(distinct takes.id), sec_id from takes 
+where semester = 'Fall' and year = 2022
+group by sec_id;
 
 -- 7
-SELECT MAX(tmp.cnt) FROM (
-SELECT section.course_id, COUNT(takes.ID) as cnt FROM section LEFT JOIN takes ON section.course_id = takes.course_id
-  AND section.sec_id = takes.sec_id AND section.semester = takes.semester
-  AND section.year = takes.year
-WHERE section.semester = 'Fall' AND section.year = 2022
-GROUP BY section.course_id, section.sec_id) as tmp
+select MAX(cnt) from (
+select count(distinct takes.id) as cnt, sec_id from takes 
+where semester = 'Fall' and year = 2022
+group by sec_id) as asd;
