@@ -67,7 +67,7 @@ WHERE schools.school_id = loan_books.school_id
 GROUP BY schools.school_name, books.publisher
 ORDER BY schools.school_name ASC, num_books_loaned DESC;
 
-SELECT school_name, book_name, teacher_name, MAX(loanDate) AS loan_date
+SELECT school_name, book_name, teacher_name, MIN(loanDate) AS loan_date
 FROM schools
 JOIN teachers ON schools.school_id = teachers.school_id
 JOIN loan_books ON teachers.teacher_id = loan_books.teacher_id
