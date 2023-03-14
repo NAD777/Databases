@@ -4,16 +4,17 @@ FROM film
          JOIN category ON film_category.category_id = category.category_id
 WHERE (film.rating = 'R' OR film.rating = 'PG-13')
   AND (category.name = 'Horror' OR category.name = 'Sci-Fi')
-  AND film.film_id NOT IN (SELECT i.film_id
-                           FROM inventory i
-                                    JOIN rental r ON i.inventory_id = r.inventory_id);
+  AND film.film_id NOT IN (SELECT inventory.film_id
+                           FROM inventory
+                                    JOIN rental ON inventory.inventory_id = rental.inventory_id);
 
-SELECT c.city, s.store_id, s.address_id, sum(p.amount) as total_sales
-FROM store s
-         JOIN staff st ON s.store_id = st.store_id
-         JOIN address a ON s.address_id = a.address_id
-         JOIN city c ON a.city_id = c.city_id
-         JOIN payment p ON st.staff_id = p.staff_id
-GROUP BY c.city, s.store_id, s.address_id
+
+SELECT city.city, store.store_id, store.address_id, sum(payment.amount) as total_sales
+FROM store
+         JOIN staff ON store.store_id = staff.store_id
+         JOIN address ON store.address_id = address.address_id
+         JOIN city ON address.city_id = city.city_id
+         JOIN payment ON staff.staff_id = payment.staff_id
+GROUP BY city.city, store.store_id, store.address_id
 ORDER BY total_sales DESC;
 
