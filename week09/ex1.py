@@ -18,6 +18,7 @@ for address_id, city, address in res:
         lat, lon = 0, 0
     cur.execute("UPDATE address SET latitude = %s, longitude = %s WHERE address_id = %s", (lat, lon, address_id))
     print(address_id, '|',  address, (lat, lon))
+
 con.commit()
 cur.close()
 con.close()
