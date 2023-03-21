@@ -1,7 +1,7 @@
 drop function retrieves_customers;
 
-CREATE OR REPLACE FUNCTION retrieves_customers(start INTEGER, "end" INTEGER) -- We can not use end as variable name
-    RETURNS TABLE
+CREATE OR REPLACE FUNCTION retrieves_customers(start INTEGER, "end" INTEGER)
+RETURNS TABLE
             (
                 customerId INTEGER,
                 addressId SMALLINT,
