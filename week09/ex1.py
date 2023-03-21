@@ -1,7 +1,6 @@
 import psycopg2
 from faker import Faker
 from geopy.geocoders import Nominatim
-# https://stackabuse.com/working-with-postgresql-in-python/
 con = psycopg2.connect(database="dvdrental", user="postgres",
                        password="12345", host="127.0.0.1", port="5432")
 
