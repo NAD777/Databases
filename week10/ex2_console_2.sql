@@ -8,5 +8,20 @@ BEGIN TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
 UPDATE account SET balance = balance + 20 WHERE fullname = 'Alice Jones';
 ROLLBACK;
 COMMIT;
--- while trying to commit the changes, the infinite read happens with
--- read (un)commited and repeatable read isolation levels.
+-- When attempting to commit changes with READ UNCOMMITTED or REPEATABLE READ isolation levels, an infinite read may occur.
+
+BEGIN TRANSACTION ISOLATION LEVEL READ COMMITTED;
+BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+
+SAVEPOINT pt1;
+
+SELECT * FROM acccount WHERE group_id = 2;
+
+UPDATE acccount SET group_id = 2 WHERE fullname = 'Bob Brown';
+
+SELECT * FROM acccount WHERE group_id = 2;
+
+COMMIT;
+
+
+
